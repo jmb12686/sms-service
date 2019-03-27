@@ -1,0 +1,18 @@
+{
+  "name": "sms-service",
+  "version": "1.0.0",
+  "description": "Send SMS text messages thru AWS SNS",
+  "main": "sms-service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "SMS",
+    "text",
+    "message",
+    "aws",
+    "sns"
+  ],
+  "author": "John Belisle",
+  "license": "ISC"
+}
