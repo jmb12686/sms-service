@@ -2,17 +2,51 @@
   "name": "sms-service",
   "version": "1.0.0",
   "description": "Send SMS text messages thru AWS SNS",
-  "main": "sms-service.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "ci": "npm run format && npm run lint && npm run build && npm run test",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "keywords": [
     "SMS",
-    "text",
-    "message",
+    "text message",
     "aws",
-    "sns"
+    "amazon web services",
+    "sns",
+    "simple notification service"
   ],
   "author": "John Belisle",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmb12686/sms-service.git"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.2",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.12.0",
+    "aws-sdk-mock": "^4.3.1",
+    "jest": "^24.5.0",
+    "prettier": "^1.16.4",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.4000"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.429.0",
+    "debug": "^4.1.1"
+  }
 }
