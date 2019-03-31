@@ -11,7 +11,7 @@ class SMSService {
     this.logger = debug('sms-service');
   }
 
-  public async sendSMS(phoneNumber: string, messageBody: string): Promise<void> {
+  public async sendSMS(phoneNumber: string, messageBody: string): Promise<string> {
     const requestParams = {
       Message: messageBody,
       PhoneNumber: phoneNumber,
@@ -19,6 +19,7 @@ class SMSService {
     try {
       const response: PublishResponse = await this.snsClient.publish(requestParams).promise();
       this.logger('publish response: ' + JSON.stringify(response));
+      return 'Success';
     } catch (err) {
       console.log(err, err.stack);
       throw new Error('Error: exception caught while attempting to send message');
