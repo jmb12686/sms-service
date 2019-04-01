@@ -1,12 +1,15 @@
-import AWS = require('aws-sdk');
+// tslint:disable-next-line: no-var-requires
+const AWS = require('aws-sdk');
 import AWS_MOCK = require('aws-sdk-mock');
+// tslint:disable-next-line: no-var-requires
+const sinon = require('sinon');
 import { SMSService } from '../index';
 
 let fakePublish: any;
 let expectedParams: any;
 jest.setTimeout(15000);
 
-beforeAll(done => {
+beforeEach(done => {
   fakePublish = jest.fn().mockResolvedValue({ data: 'success' });
   AWS_MOCK.mock('SNS', 'publish', fakePublish);
   expectedParams = {
@@ -16,7 +19,7 @@ beforeAll(done => {
   done();
 });
 
-afterAll(done => {
+afterEach(done => {
   AWS_MOCK.restore();
   done();
 });
@@ -51,4 +54,16 @@ test('exception handling', async () => {
   } catch (err) {
     expect(err.message).toMatch('Error: exception caught while attempting to send message');
   }
+});
+
+test('test default constructor initializes with us-east-1 region', done => {
+  const smsService = new SMSService();
+  sinon.assert.calledWith(AWS.SNS, { region: 'us-east-1' });
+  done();
+});
+
+test('constructor passes region', done => {
+  const smsService = new SMSService('us-west-1');
+  sinon.assert.calledWith(AWS.SNS, { region: 'us-west-1' });
+  done();
 });

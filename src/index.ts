@@ -21,7 +21,7 @@ class SMSService {
       this.logger('publish response: ' + JSON.stringify(response));
       return 'Success';
     } catch (err) {
-      console.log(err, err.stack);
+      console.error(err, err.stack);
       throw new Error('Error: exception caught while attempting to send message');
     }
   }
