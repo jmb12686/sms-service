@@ -1,6 +1,6 @@
 {
   "name": "sms-service",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Send SMS text messages thru AWS SNS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
