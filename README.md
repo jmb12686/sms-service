@@ -82,7 +82,7 @@ $ export DEBUG=*
 ### Automated Publish
 1. Utilizing GitHub Actions, after committing / merging changes into master, simply use `npm version` command to force a release on GitHub and trigger the workflow:
     ```bash
-    npm version patch -m "Upgrade to %s for reasons"
+    npm version 1.1.4 -m "Upgrade to %s for reasons"
     ```
 ### Manual Publish
 1. After merging feature branch changes back into master, follow semver and bump git version tag:
