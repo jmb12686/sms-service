@@ -1,20 +1,37 @@
-name: Node.js Release Package 
+name: Build and release sms-service
+
+#on: [push]
 
 on:
   release:
     branches:
       - master
+
 jobs:
-  publish-npm:
-    needs: build
+  release:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        node-version: 10
-        registry-url: 'https://registry.npmjs.org'
-    - run: npm ci
-    - run: npm publish
+        node-version: ${{ matrix.node-version }}
+    - name: npm install run and test
+      run: |
+        npm run install
+        npm run build
+        npm run test
+    - name: npm publish
+      run: |
+        npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        npm run version from-git
+        npm run trypublish
       env:
+        CI: true
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
