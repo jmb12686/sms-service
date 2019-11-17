@@ -23,9 +23,7 @@ jobs:
         npm run build
         npm run test
     - name: npm publish
-      run: |
-        npm version from-git
-        npm publish
+      run: npm publish
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
