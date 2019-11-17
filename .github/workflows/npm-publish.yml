@@ -9,19 +9,14 @@ on:
 
 jobs:
   release:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node and NPM Registry
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '10.x'
+        registry-url: 'https://registry.npmjs.org'
     - name: npm install run and test
       run: |
         npm install
@@ -29,9 +24,8 @@ jobs:
         npm run test
     - name: npm publish
       run: |
-        npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-        npm version
+        npm version from-git
         npm publish
       env:
         CI: true
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
