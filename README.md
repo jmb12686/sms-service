@@ -38,15 +38,16 @@ A simple way to send SMS text messages.
         ]
     }
     ```
+
     If you know the set of recipients before hand, you can further tighten access control permissions by listing specific phone numbers in the last `Resource` node.
 
 ## Installation
 
 1. **Install via npm:**
+
    ```bash
    npm install sms-service
    ```
-
 
 ## Usage
 
@@ -61,48 +62,60 @@ const smsService = new sms.SMSService();
 async smsService.sendSMS('15555555555','hello from sms-service!');
 
 ```
+
 The phoneNumber format **must be in E.164 format**.  For example, a USA based number of *555-555-5555*, the service would require *15555555555*.
 [Refer to this guide for additional information.](https://support.twilio.com/hc/en-us/articles/223183008-Formatting-International-Phone-Numbers)
 
-
 ### Debug Logging
-Debug logging is provided by [debug](https://www.npmjs.com/package/debug), and can be turned on setting the environment variable `DEBUG`.   
+
+Debug logging is provided by [debug](https://www.npmjs.com/package/debug), and can be turned on setting the environment variable `DEBUG`.
 
 PowerShell Example:
+
 ```ps
+
 $env:DEBUG = "*"
 ```
 
 Bash:
+
 ```bash
-$ export DEBUG=*
+export DEBUG=*
 ```
 
 ## Contributing
+
 ### Automated Publish
+
 1. Utilizing GitHub Actions, after committing / merging changes into master, simply use `npm version` command to force a release on GitHub and trigger the workflow:
+
     ```bash
     npm version 1.1.4 -m "Upgrade to %s for reasons"
     ```
+
 ### Manual Publish
+
 1. After merging feature branch changes back into master, follow semver and bump git version tag:
+
     ```bash
-    $ git tag -a 1.X.X -m "adding version XXX"
+    git tag -a 1.X.X -m "adding version XXX"
     ```
+
 2. bump npm module version:
 
     ```bash
-    $ npm version from-git
+    npm version from-git
     ```
 
     Note: `npm version` also will push all git commits and tags to origin.  This was configured in the `package.json` scripts:
+
     ```json
         "version": "npm run format && git add -A src",
         "postversion": "git push && git push --tags"
     ```
+
 3. publish new release to npm:
 
-    ```
-    $npm publish
-    
+    ```bash
+    npm publish
     ```
