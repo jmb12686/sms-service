@@ -39,10 +39,10 @@
     "@types/node": "^14.0.13",
     "aws-sdk-mock": "^5.1.0",
     "coveralls": "^3.0.3",
-    "jest": "^24.8.0",
+    "jest": "^26.0.1",
     "prettier": "^1.16.4",
     "sinon": "^9.0.2",
-    "ts-jest": "^24.0.0",
+    "ts-jest": "^26.1.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.4.1"
