@@ -1,0 +1,56 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "10:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: aws-sdk
+    versions:
+    - 2.831.0
+    - 2.834.0
+    - 2.839.0
+    - 2.843.0
+    - 2.848.0
+    - 2.853.0
+    - 2.858.0
+    - 2.863.0
+    - 2.868.0
+    - 2.874.0
+    - 2.879.0
+    - 2.884.0
+    - 2.888.0
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.20
+    - 26.0.21
+    - 26.0.22
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.22
+    - 14.14.25
+    - 14.14.28
+    - 14.14.31
+    - 14.14.32
+    - 14.14.34
+    - 14.14.35
+    - 14.14.37
+  - dependency-name: ts-jest
+    versions:
+    - 26.4.4
+    - 26.5.0
+    - 26.5.1
+    - 26.5.2
+    - 26.5.3
+    - 26.5.4
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+  - dependency-name: typescript
+    versions:
+    - 3.9.7
